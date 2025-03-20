@@ -128,7 +128,7 @@ class PubSubFacade:
         @wraps(f)
         def decorator(*args, **kwargs):
             self = args[0]
-            if not self.container.is_running():
+            if not self.container.thread_is_running():
                 raise RuntimeError("Action cannot complete because container has not been started yet")
             return f(*args, **kwargs)
         return decorator
